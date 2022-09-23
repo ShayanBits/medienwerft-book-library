@@ -7,7 +7,7 @@
 
     <form action="#" class="column column-33">
       <label for="by-publisher">{{filterBoxTitle}}</label>
-      <select id="by-publisher" v-model="selectedFilter" @change="$emit('update:selectedFilter', $event.target.value)">
+      <select id="by-publisher" @change="$emit('change:selected-filter', $event.target.value)">
         <option v-for="(option, index) in options" :key="index"  :value="option">{{option}}</option>
       </select>
     </form>
@@ -16,21 +16,17 @@
 
 
 <script lang="ts" setup>
-defineEmits(['update:searchInput', 'change:searchInput', 'update:selectedFilter'])
+defineEmits(['update:searchInput', 'change:searchInput', 'update:selectedFilter', 'change:selected-filter'])
 const props = defineProps({
   searchBoxTitle: {
     type: String,
     required: true
   },
-  searchInput: {
-    type: String,
-    required: true
-  },
-  selectedFilter: {
-    type: String,
-    required: true
-  },
   filterBoxTitle: {
+    type: String,
+    required: true
+  },
+  searchInput: {
     type: String,
     required: true
   },

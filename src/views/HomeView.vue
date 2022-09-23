@@ -1,11 +1,11 @@
 <template>
-    <Headline headline="2 Books displayed" />
+    <Headline :headline="`${resulListStore.books.length} Books displayed`" />
     <SearchBar v-model:search-input="searchInput"
-               v-model:selected-filter="selectedFilter"
                search-box-title="Search by Title"
                filter-box-title="Filter by Publisher"
                :options="options"
-               @change:searchInput="fetchResults"
+               @change:searchInput="fetchResults(searchInput)"
+               @change:selected-filter="fetchResults($event)"
     />
 <!--    <ResultsTable :table-data="resultLists" />-->
     <ResultsTable />
@@ -28,16 +28,16 @@ const searchInput = ref('')
 const selectedFilter = ref('')
 const resulListStore = useResultListsStore()
 
-const resultLists: Ref<TableResult[]> = ref([])
+// const resultLists: Ref<TableResult[]> = ref([])
 
 onMounted(() => {
   fetchResults()
 })
 
 
-const fetchResults = async () => {
+const fetchResults = async (searchParam?:string) => {
   axios
-    .get(`${BASE_URL}${PATH.books}`, { params: { q: searchInput.value } }).then((response) => {
+    .get(`${BASE_URL}${PATH.books}`, { params: { q: searchParam } }).then((response) => {
     console.log("response length= ", response.data.length);
     resulListStore.books = response.data
     // resultLists.value = response.data
