@@ -122,18 +122,4 @@ nav a.router-link-exact-active {
   border-radius: 50%;
 }
 
-main .fav-btn {
-  padding: 0;
-  margin-bottom: -45px;
-}
-
-.fav {
-  width: 100%;
-  height: 100%;
-}
-
-.first-col {
-  width: 5%;
-}
-
 </style>
