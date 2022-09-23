@@ -13,7 +13,7 @@
           </tr>
           </thead>
           <tbody>
-          <tr v-for="(tableRow, index) in tableData" :key="index">
+          <tr v-for="(tableRow, index) in resultListsStore.books" :key="index">
             <td>
               <button class="button button-clear fav-btn">
                 <svg
@@ -47,12 +47,15 @@
 <script lang="ts" setup>
 import { TableResult } from "../types/Table";
 import { PropType} from "vue";
+import { useResultListsStore } from "../stores/resultLists";
 
 const props = defineProps({
   tableData :  {
     type: Array as PropType<TableResult[]>,
   }
 })
+
+const resultListsStore = useResultListsStore()
 </script>
 
 
