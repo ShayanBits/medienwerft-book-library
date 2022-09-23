@@ -2,7 +2,7 @@
   <section class="row filter-search">
     <form action="#" class="column">
       <label for="search">{{searchBoxTitle}}</label>
-      <input type="text" id="search" :value="searchInput" @input="$emit('update:searchInput', $event.target.value)"/>
+      <input type="text" id="search" :value="searchInput" @change="$emit('change:searchInput' , $event.target.value)" @input="$emit('update:searchInput' , $event.target.value)"/>
     </form>
 
     <form action="#" class="column column-33">
@@ -16,7 +16,7 @@
 
 
 <script lang="ts" setup>
-defineEmits(['update:searchInput', 'update:selectedFilter'])
+defineEmits(['update:searchInput', 'change:searchInput', 'update:selectedFilter'])
 const props = defineProps({
   searchBoxTitle: {
     type: String,
