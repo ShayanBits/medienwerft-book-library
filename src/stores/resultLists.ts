@@ -1,8 +1,8 @@
 import { defineStore } from 'pinia'
-import type {TableResult} from "../types/Table"
+import type { Book } from "../types/Book";
 
 export const useResultListsStore = defineStore('resultLists', () => {
-  const books: TableResult[] = []
+  const books: Book[] = []
 
   return { books }
 })
