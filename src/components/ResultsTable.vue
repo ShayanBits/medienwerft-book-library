@@ -33,9 +33,9 @@
             <td>{{tableRow.author}}</td>
             <td>{{tableRow.publisher}}</td>
             <td>
-              <button class="button" onclick="location.href='detail.html'">
-                Detail
-              </button>
+              <RouterLink :to="{name: 'detail', params: {id:tableRow.id }}" >
+                <button class="button">Detail</button>
+              </RouterLink>
             </td>
           </tr>
           </tbody>

@@ -11,21 +11,16 @@ import HelloWorld from './components/HelloWorld.vue'
         <div class="column">
           <nav class="mainnav">
             <RouterLink to="/" class="mainnav-link">Home</RouterLink>
-            <RouterLink to="/detail" class="mainnav-link ">Detail</RouterLink>
             <RouterLink to="/favorites" class="mainnav-link">Favorites <span class="mainnav-number">2</span> </RouterLink>
           </nav>
         </div>
       </div>
     </div>
-<!--    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />-->
 
-<!--    <div class="wrapper">-->
-<!--      <HelloWorld msg="You did it!" />-->
-
-<!--    </div>-->
   </header>
-
-  <RouterView />
+  <main class="container">
+    <RouterView />
+  </main>
 </template>
 
 <style scoped>

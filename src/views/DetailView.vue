@@ -1,15 +1,57 @@
 <template>
-  <div class="about">
-    <h1>Detail Page</h1>
-  </div>
+  <Headline :headline="detailInfo.title" />
+  <SubHeadline :subHeadline="detailInfo.subtitle" />
+  <section class="row">
+    <div class="column column-67">
+      <h3>Abstract</h3>
+      <p>
+        {{detailInfo.abstract}}
+      </p>
+
+      <h4>Details</h4>
+      <ul>
+        <li><strong>Author:</strong> {{detailInfo.author}}</li>
+        <li><strong>Publisher:</strong> {{detailInfo.publisher}}</li>
+        <li><strong>Pages:</strong> {{detailInfo.numPages}}</li>
+      </ul>
+
+      <button
+        class="button button-outline"
+        @click="$router.back()"
+      >
+        Back
+      </button>
+    </div>
+    <div class="column column-33">
+      <img :src="detailInfo.cover" alt="" />
+    </div>
+  </section>
 </template>
 
-<style>
-@media (min-width: 1024px) {
-  .about {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
+<script lang="ts" setup>
+import { onBeforeMount, defineProps, reactive } from "vue";
+import axios from "axios";
+import { BASE_URL, PATH } from "../constants/api.constants";
+import type { BookDetail } from "../types/BookDetail";
+import Headline from "../components/Headline.vue";
+import SubHeadline from "../components/SubHeadline.vue";
+
+const props = defineProps({
+  id: {
+    type: String,
+    required: true
   }
-}
-</style>
+})
+
+const detailInfo : BookDetail= reactive({} as BookDetail)
+
+onBeforeMount(() => {
+  axios.get(`${BASE_URL}${PATH.books}/${props.id}`)
+    .then(response => {
+      Object.assign(detailInfo, response.data)
+    })
+    .catch(error => {
+      console.log(error)
+    })
+})
+</script>
