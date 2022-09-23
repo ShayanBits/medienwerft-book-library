@@ -1,33 +1,32 @@
 <script setup lang="ts">
 import TheWelcome from '../components/TheWelcome.vue'
-import Headline from '@/components/Headline.vue'
-import SearchBar from '@/components/SearchBar.vue'
-import ResultsTable from '@/components/ResultsTable.vue'
-import { ref } from "vue";
+import Headline from '../components/Headline.vue'
+import SearchBar from '../components/SearchBar.vue'
+import ResultsTable from '../components/ResultsTable.vue'
+import { ref, onMounted, reactive } from "vue";
 import type { TableResult } from "../types/Table";
+import axios from "axios";
 
 
 const options : string[] = ['-', 'Leanpub', 'McGraw-Hill']
 const searchInput = ref('')
 const selectedFilter = ref('')
 
-const resultLists: TableResult[] = [
-  {
-    title: 'The Lean Startup',
-    ISBN: '978-0-7352-1501-7',
-    author: 'Eric Ries',
-    publisher: 'McGraw-Hill',
-  },
-  {
-    title: 'Book2',
-    ISBN: '978-0-7352-1501-7',
-    author: 'John Doe',
-    publisher: 'Axle S.',
-  }
-]
+const resultLists: TableResult[] = reactive([])
 
-const fetchResults = () => {
-  console.log('fetching results')
+onMounted(() => {
+  fetchResults()
+})
+
+
+const fetchResults = async () => {
+  axios
+    .get('http://localhost:4730/books').then((response) => {
+    Object.assign(resultLists, response.data)
+  })
+    .catch((error) => {
+    console.log(error)
+  })
 }
 
 </script>

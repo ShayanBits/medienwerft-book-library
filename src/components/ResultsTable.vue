@@ -29,7 +29,7 @@
               </button>
             </td>
             <td>{{ tableRow.title }}</td>
-            <td>{{tableRow.ISBN}}</td>
+            <td>{{tableRow.isbn}}</td>
             <td>{{tableRow.author}}</td>
             <td>{{tableRow.publisher}}</td>
             <td>
