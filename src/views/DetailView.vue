@@ -32,7 +32,7 @@
 import { onBeforeMount, defineProps, reactive } from "vue";
 import axios from "axios";
 import { BASE_URL, PATH } from "../constants/api.constants";
-import type { Bookl } from "../types/Bookl";
+import type { Book } from "../types/Book";
 import Headline from "../components/Headline.vue";
 import SubHeadline from "../components/SubHeadline.vue";
 
@@ -43,7 +43,7 @@ const props = defineProps({
   }
 })
 
-const detailInfo : Bookl= reactive({} as Bookl)
+const detailInfo : Book= reactive({} as Book)
 
 onBeforeMount(() => {
   axios.get(`${BASE_URL}${PATH.books}/${props.id}`)

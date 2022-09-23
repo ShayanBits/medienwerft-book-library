@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
+import { useFavoriteBooks } from "./stores/favorites";
+
+const favoriteBooks = useFavoriteBooks();
 </script>
 
 <template>
@@ -10,13 +13,14 @@ import { RouterLink, RouterView } from 'vue-router'
         <div class="column">
           <nav class="mainnav">
             <RouterLink to="/" class="mainnav-link">Home</RouterLink>
-            <RouterLink to="/favorites" class="mainnav-link">Favorites <span class="mainnav-number">2</span> </RouterLink>
+            <RouterLink to="/favorites" class="mainnav-link">Favorites <span class="mainnav-number">{{favoriteBooks.books.length}}</span> </RouterLink>
           </nav>
         </div>
       </div>
     </div>
 
   </header>
+
   <main class="container">
     <RouterView />
   </main>
